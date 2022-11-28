@@ -20,9 +20,17 @@ engine:
   merge:
   - include: ['**/*']
     exclude: ['workload.yaml']
+    exclude: ['tiltfile']
   - include: ['workload.yaml']
     chain:
     - type: ReplaceText
       substitutions:
       - text: workload-name
         with: "#workloadName"
+  - include: ['tiltfile']
+    chain:
+    - type: ReplaceText
+      substitutions:
+      - text: workload-name
+        with: "#workloadName"
+
