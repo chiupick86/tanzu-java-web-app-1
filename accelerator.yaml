@@ -17,19 +17,19 @@ accelerator:
     required: true
 
 engine:
+  onConflict: NWayDiff
   merge:
-  - include: ['**/*']
-    exclude: ['workload.yaml']
-  - include: ['workload.yaml']
+  - include: [ "**/*" ]
+    exclude: [ "Tiltfile","catalog/*.yaml"]
+  - include: [ "Tiltfile" ]
     chain:
     - type: ReplaceText
       substitutions:
       - text: workload-name
         with: "#workloadName"
-  - include: ['tiltfile']
+  - include: [ "config/workload.yaml"]
     chain:
     - type: ReplaceText
       substitutions:
       - text: workload-name
         with: "#workloadName"
-
